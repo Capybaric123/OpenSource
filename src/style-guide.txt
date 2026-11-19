@@ -1,0 +1,22 @@
+This is just a simple style guide for the code for anyone willing to contribute to this project in the future.
+
+Variables prefixes:
+
+Global Variables are to be marked with a g_ prefix
+Static/In-file Variables are to be marked with a s_ prefix
+Struct or Union members are to be marked with a m_ prefix
+
+Variable names:
+
+Boolean variables should start with b
+Unsigned intigers should be started with un or n
+Normal intigers should start with i
+Strings/char-arrays should start with sz
+Pointers should start with a p
+Mathematical vectors start with vec
+Floats are to be started with f or fl
+Constants are to be all caps with underscores for spaces (i.e. MAX_VELOCITY)
+
+Functions Use PascalCase Naming Style!
+
+Structs Should Start with C!
