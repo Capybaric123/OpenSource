@@ -8,6 +8,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Custom libraries
+// Exclude the boolean macro from the types library
+#define NO_BOOL
+#include "util/types.h"
+#include "util/time.h"
+
 //------------------------------------------------------------------------------
 // Purpose: OpenGL Viewport size callback function for GLFW
 //------------------------------------------------------------------------------
@@ -16,6 +22,7 @@ static void s_SizeCallback(GLFWwindow *pWindow, int iWidth, int iHeight) {
 }
 
 // The actuall function is at the bottom of the file, this is here because C doesn't like it when you declare functions after you called them.
+// TODO: Make an actuall GLFW key callback function to properly utilize the input functions
 static void s_ProcessInput(GLFWwindow *pWindow);
 
 int main(int argc, char **argv) {
@@ -92,6 +99,7 @@ int main(int argc, char **argv) {
 //------------------------------------------------------------------------------
 // TODO: Move this to another file later...
 static void s_ProcessInput(GLFWwindow *pWindow) {
+	// This one is a little weird with the functions
 	if(glfwGetKey(pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
 		printf("Pressed Escape, exiting program!\n");
 		glfwSetWindowShouldClose(pWindow, GLFW_TRUE);
