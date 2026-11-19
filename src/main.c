@@ -25,6 +25,12 @@ static void s_SizeCallback(GLFWwindow *pWindow, int iWidth, int iHeight) {
 // TODO: Make an actuall GLFW key callback function to properly utilize the input functions
 static void s_ProcessInput(GLFWwindow *pWindow);
 
+f64 fDeltaTime = 0.0f;
+f64 fLastFrame = 0.0f;
+
+bool bShowFps = false;
+
+// The pointer to a pointer is kinda sketchy, might change this after...
 int main(int argc, char **argv) {
 	//--------------------------------------------------------------------------
 	// Purpose: Initialization Code
@@ -69,10 +75,24 @@ int main(int argc, char **argv) {
 	// TODO: Add a default option of window size and then add the ability to start from a different resolution in the command line.
 	glViewport(0, 0, 640, 480);
 	glEnable(GL_DEPTH_TEST);
+
+	u64 uFps;
+	f64 fFrameTime;
 	//--------------------------------------------------------------------------
 	// Purpose: Main Loop
 	//--------------------------------------------------------------------------
 	while(!glfwWindowShouldClose(pWindow)) {
+		// Fps counter thing?
+		f64 fNow = glfwGetTime();
+
+		fDeltaTime = fNow - fLastFrame;
+		fLastFrame = fNow;
+
+		if(bShowFps == true && fNow - fFrameTime >= 1.0f) {
+			printf("FPS: %lld\n");
+			uFps = 0;
+			fFrameTime = fNow;
+		}
 		// Makes sure the window doesn't appear as unresponding on some systems
 		glfwPollEvents();
 
@@ -84,6 +104,7 @@ int main(int argc, char **argv) {
 
 		// Swap the buffers
 		glfwSwapBuffers(pWindow);
+		uFps++;
 	}
 	//--------------------------------------------------------------------------
 	// Purpose: Cleanup
@@ -103,5 +124,8 @@ static void s_ProcessInput(GLFWwindow *pWindow) {
 	if(glfwGetKey(pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
 		printf("Pressed Escape, exiting program!\n");
 		glfwSetWindowShouldClose(pWindow, GLFW_TRUE);
+	}
+	if(glfwGetKey(pWindow, GLFW_KEY_F3) == GLFW_PRESS) {
+		bShowFps = !bShowFps;
 	}
 }
