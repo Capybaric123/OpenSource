@@ -17,6 +17,18 @@ Mathematical vectors start with vec
 Floats are to be started with f or fl
 Constants are to be all caps with underscores for spaces (i.e. MAX_VELOCITY)
 
+Comments:
+
+If there are any kind of simple comment you want to add just add a normal // and add the text after it
+In case where you wrote some kind of function - just add a //------------------ separator a Purpose and another //-------------- separator
+Example:
+//------------------------------------------------------------------------------
+// Purpose: Example function purpose header comment
+//------------------------------------------------------------------------------
+
+If you made a new file just do the same thing at the top of the file with the purpose of it.
+Anything that is a todo just mark as a TODO: and add the text after.
+
 Functions Use PascalCase Naming Style!
 
 Structs Should Start with C!
