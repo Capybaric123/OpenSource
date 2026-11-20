@@ -54,6 +54,20 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 	printf("Created Window!\n");
+	// TODO: Fix icon loading, project swaped to lodepng.
+/*
+	int iIconWidth, iIconHeight;
+	int iIconChannels;
+	unsigned char *pIconPixels = stbi_load("../res/images/icon.png", &iIconWidth, &iIconHeight, &iIconChannels, 4);
+	printf("Loaded Image!\n");
+
+	GLFWimage m_IconImage[1];
+	m_IconImage[0].width = iIconWidth;
+	m_IconImage[0].height = iIconHeight;
+	m_IconImage[0].pixels = pIconPixels;
+
+	glfwSetWindowIcon(pWindow, 1, m_IconImage);
+*/
 	glfwMakeContextCurrent(pWindow);
 
 	// TODO: Add more callback functions in the future!
