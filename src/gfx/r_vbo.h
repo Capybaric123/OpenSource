@@ -10,7 +10,7 @@ struct CVbo {
 	bool m_bDynamic;
 };
 
-struct CVbo m_VboCreate(GLint iType, bool bDynamic);
+struct CVbo m_VboCreate(GLint m_iType, bool m_bDynamic);
 
 void m_VboDestroy(struct CVbo m_Self);
 void m_VboBind(struct CVbo m_Self);
