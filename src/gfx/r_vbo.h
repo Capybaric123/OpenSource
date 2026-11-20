@@ -1,5 +1,5 @@
-#ifndef VBO_H
-#define VBO_H
+#ifndef R_VBO_H
+#define R_VBO_H
 
 #include <glad/gl.h>
 #include <cglm/struct.h>

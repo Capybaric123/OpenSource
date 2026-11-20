@@ -1,8 +1,8 @@
-#ifndef VAO_H
-#define VAO_H
+#ifndef R_VAO_H
+#define R_VAO_H
 
 #include <glad/gl.h>
-#include "vbo.h"
+#include "r_vbo.h"
 
 struct CVao {
 	GLuint m_uHandle;
