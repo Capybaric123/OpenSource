@@ -35,6 +35,7 @@ bool bShowFps = false;
 
 // The pointer to a pointer is kinda sketchy, might change this after...
 int main(int argc, char **argv) {
+
 	//--------------------------------------------------------------------------
 	// Purpose: Initialization Code
 	//--------------------------------------------------------------------------
@@ -59,6 +60,7 @@ int main(int argc, char **argv) {
 	printf("Created Window!\n");
 	// Set the window context for OpenGL
 	glfwMakeContextCurrent(pWindow);
+
 	//--------------------------------------------------------------------------
 	// Purpose: Load the icon from a file
 	//--------------------------------------------------------------------------
@@ -99,18 +101,21 @@ int main(int argc, char **argv) {
 	printf("Loaded OpenGL version %d.%d!\n",
 		GLAD_VERSION_MAJOR(iGlVersion),
 		GLAD_VERSION_MINOR(iGlVersion));
+	//--------------------------------------------------------------------------
+
+	u64 uFps;
+	f64 fFrameTime;
 
 	// Pre-startup functions to enable different OpenGL extensions
 	// TODO: Add a default option of window size and then add the ability to start from a different resolution in the command line.
 	glViewport(0, 0, 640, 480);
 	glEnable(GL_DEPTH_TEST);
-
-	u64 uFps;
-	f64 fFrameTime;
+	
 	//--------------------------------------------------------------------------
 	// Purpose: Main Loop
 	//--------------------------------------------------------------------------
 	while(!glfwWindowShouldClose(pWindow)) {
+	
 		// Fps counter thing?
 		f64 fNow = glfwGetTime();
 
@@ -123,6 +128,7 @@ int main(int argc, char **argv) {
 			uFps = 0;
 			fFrameTime = fNow;
 		}
+	
 		// Makes sure the window doesn't appear as unresponding on some systems
 		glfwPollEvents();
 
@@ -136,6 +142,7 @@ int main(int argc, char **argv) {
 		glfwSwapBuffers(pWindow);
 		uFps++;
 	}
+	
 	//--------------------------------------------------------------------------
 	// Purpose: Cleanup
 	//--------------------------------------------------------------------------
