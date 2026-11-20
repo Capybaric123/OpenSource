@@ -6,6 +6,27 @@ Feel free to help! There is a coding style guide in the source folder called the
 
 Everything is free to use and you can clone the project for your own work, or just to have some fun!
 
+## Current Stats
+
+```
+     201 text files.
+     201 unique files.
+       5 files ignored.
+
+github.com/AlDanial/cloc v 2.12  T=0.40 s (505.5 files/s, 223578.3 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+C/C++ Header                   195           6350          25666          41334
+C                                3            930            959          13590
+Text                             1              9              0             25
+Markdown                         1             11              0             12
+make                             1              1              0             12
+-------------------------------------------------------------------------------
+SUM:                           201           7301          26625          54973
+-------------------------------------------------------------------------------
+```
+
 ## Contribution
 
 If you are willing to contribute to the project in some way, just make a fork add your changes and make a pull request!
