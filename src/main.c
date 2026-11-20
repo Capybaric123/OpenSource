@@ -13,6 +13,7 @@
 #define NO_BOOL
 #include "util/types.h"
 #include "util/time.h"
+#include "gfx/lodepng.h"
 
 //------------------------------------------------------------------------------
 // Purpose: OpenGL Viewport size callback function for GLFW
@@ -54,21 +55,31 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 	printf("Created Window!\n");
-	// TODO: Fix icon loading, project swaped to lodepng.
-/*
-	int iIconWidth, iIconHeight;
-	int iIconChannels;
-	unsigned char *pIconPixels = stbi_load("../res/images/icon.png", &iIconWidth, &iIconHeight, &iIconChannels, 4);
+	
+	glfwMakeContextCurrent(pWindow);
+
+	// TODO: Clean icon loading.
+
+	u32 uIconWidth, uIconHeight;
+	// u32 uIconChannels;
+	unsigned char *pIconPixels;
+	u32 error = lodepng_decode32_file(&pIconPixels, &uIconWidth, &uIconHeight, "res/images/icon.png");
+	if(error) {
+		fprintf(stderr, "ERROR: Failed to load icon\n%u: %s\n", error, lodepng_error_text(error));
+		glfwDestroyWindow(pWindow);
+		glfwTerminate();
+		return 1;
+	}
 	printf("Loaded Image!\n");
 
 	GLFWimage m_IconImage[1];
-	m_IconImage[0].width = iIconWidth;
-	m_IconImage[0].height = iIconHeight;
+	m_IconImage[0].width = uIconWidth;
+	m_IconImage[0].height = uIconHeight;
 	m_IconImage[0].pixels = pIconPixels;
 
 	glfwSetWindowIcon(pWindow, 1, m_IconImage);
-*/
-	glfwMakeContextCurrent(pWindow);
+
+	free(pIconPixels);
 
 	// TODO: Add more callback functions in the future!
 	glfwSetFramebufferSizeCallback(pWindow, s_SizeCallback);
