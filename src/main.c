@@ -7,12 +7,14 @@
 // Standard library
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 // Custom libraries
 // Exclude the boolean macro from the types library
 #define NO_BOOL
 #include "util/types.h"
-#include "util/time.h"
+// Not used right now so no need to compile...
+// #include "util/time.h"
 #include "gfx/lodepng.h"
 
 //------------------------------------------------------------------------------
@@ -55,22 +57,23 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 	printf("Created Window!\n");
-	
+	// Set the window context for OpenGL
 	glfwMakeContextCurrent(pWindow);
-
-	// TODO: Clean icon loading.
-
+	//--------------------------------------------------------------------------
+	// Purpose: Load the icon from a file
+	//--------------------------------------------------------------------------
 	u32 uIconWidth, uIconHeight;
-	// u32 uIconChannels;
 	unsigned char *pIconPixels;
+	// Important to note that the path is relative to the executable and not the source file!
 	u32 error = lodepng_decode32_file(&pIconPixels, &uIconWidth, &uIconHeight, "res/images/icon.png");
+	// Crappy error check, because I have trust issues with this thing...
 	if(error) {
 		fprintf(stderr, "ERROR: Failed to load icon\n%u: %s\n", error, lodepng_error_text(error));
 		glfwDestroyWindow(pWindow);
 		glfwTerminate();
 		return 1;
 	}
-	printf("Loaded Image!\n");
+	printf("Loaded Icon!\n");
 
 	GLFWimage m_IconImage[1];
 	m_IconImage[0].width = uIconWidth;
@@ -79,6 +82,7 @@ int main(int argc, char **argv) {
 
 	glfwSetWindowIcon(pWindow, 1, m_IconImage);
 
+	// Free the allocated memory idk why...
 	free(pIconPixels);
 
 	// TODO: Add more callback functions in the future!
@@ -114,7 +118,8 @@ int main(int argc, char **argv) {
 		fLastFrame = fNow;
 
 		if(bShowFps == true && fNow - fFrameTime >= 1.0f) {
-			printf("FPS: %lld\n");
+			// I forgot to actually add the fps variable, I have no clue what the hell was the fps counter displaying before...
+			printf("FPS: %lld\n", uFps);
 			uFps = 0;
 			fFrameTime = fNow;
 		}
